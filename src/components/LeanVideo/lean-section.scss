@@ -1,0 +1,64 @@
+@use "../../sass/mixins.scss" as nav;
+@mixin media($size) {
+  @media only screen and (max-width: $size) {
+    @content;
+  }
+}
+
+.lean-video {
+  margin-top: 40px;
+  margin-bottom: 100px;
+  h1 {
+    @extend %sec_heading;
+    span {
+      color: #ef7c00;
+    }
+    margin-bottom: 45px;
+  }
+  .about-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    .videoWrapper {
+      width: 552px;
+      height: 300px;
+      position: relative;
+      iframe {
+        width: 100%;
+        height: 100%;
+      }
+      .play-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -48.8%);
+        border-radius: 50%;
+        background-color: white;
+        cursor: pointer;
+      }
+      & iframe:focus{
+        .play-button{
+          display: none;
+        }
+      }
+    }
+
+    p {
+      max-width: 552px;
+      font-size: 15px;
+      line-height: 20px;
+    }
+    // @include media(1165px) {
+    //   flex-direction: column;
+    //   text-align: center;
+    // }
+  }
+}
+
+.ytp-large-play-button,
+.ytp-button,
+.ytp-large-play-button-red-bg {
+  display: none !important;
+  opacity: 0;
+}

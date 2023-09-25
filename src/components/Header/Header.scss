@@ -1,0 +1,122 @@
+@use "../../sass/mixins.scss" as nav;
+@mixin media($size) {
+  @media only screen and (max-width: $size) {
+    @content;
+  }
+}
+.home {
+  position: relative;
+}
+.wrap {
+  margin-top: 95px;
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  height: 622px;
+  padding: 0px 7%;
+  @include media(960px) {
+    justify-content: start !important;
+  }
+  @include media(500px) {
+    padding-top: 100px;
+    justify-content: start !important;
+    flex-direction: column !important;
+  }
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+}
+
+.icon {
+  padding: 10px;
+  background-color: rgba(240, 255, 255, 0.626);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.wrap1 {
+  background: url("../../assets/image/background.png") center center no-repeat;
+  background-size: cover;
+  .init-info {
+    color: #2C2D2E !important;
+  }
+  h2 {
+    margin-top: 16px;
+    color: #2C2D2E !important;
+  }
+  p {
+    color: #2C2D2E !important;
+  }
+}
+.wrap2 {
+  background: url("../../assets/image/cover1-1024x359.jpg") center center
+    no-repeat;
+  background-size: cover;
+}
+.wrap3 {
+  background: url("../../assets/image/20688.jpg") center center no-repeat;
+  background-size: cover;
+}
+.lean-card {
+  // padding: 25px;
+  max-width: 600px;
+  // background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  // box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  // border: 1px solid rgba(255, 255, 255, 0.15);
+  @include media(960px) {
+    width: 100% !important;
+  }
+  .init-info {
+    color: #ffffff;
+    font-size: 13px;
+    font-family: "Montserrat";
+    font-weight: 500;
+    line-height: 13px;
+  }
+  h2 {
+    margin-top: 16px;
+    color: #ffffff;
+    font-size: 32px;
+    font-family: "Montserrat";
+    font-weight: 600;
+    line-height: 40px;
+  }
+  p {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    color: #ffffff;
+    font-size: 15px;
+    font-family: "Montserrat";
+    line-height: 20px;
+  }
+}
+
+.slick-dots {
+  position: absolute;
+  left: 130px;
+  bottom: 40px !important;
+  width: 200px !important;
+
+  li button {
+    border: 2px solid #ef7c00 !important;
+    border-radius: 50%;
+    width: 10px !important;
+    height: 10px !important;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  .slick-active button {
+    background: orange !important;
+  }
+}
+
+.slick-prev,
+.slick-next {
+  display: none !important;
+}

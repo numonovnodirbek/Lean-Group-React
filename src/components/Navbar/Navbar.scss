@@ -1,0 +1,248 @@
+@use "../../sass/mixins.scss" as nav;
+@mixin media($size) {
+  @media only screen and (max-width: $size) {
+    @content;
+  }
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  padding: 20px 0;
+  background: #fff;
+  transition: 0.3s ease-out;
+  .close {
+    display: none;
+  }
+
+  #navbar {
+    @extend %df;
+    width: 100%;
+    gap: 54px;
+    .nav_list {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      li {
+        margin-right: 16px;
+        padding-right: 16px;
+        border-right: 1px solid rgb(199, 194, 194);
+
+        a {
+          @extend %nav-link;
+          transition: 0.3s ease-out;
+          &:hover {
+            color: orange;
+          }
+        }
+      }
+      @include media(900px) {
+        position: fixed;
+        // display: none;
+        top: 0;
+        left: -100%;
+        width: 60%;
+        height: 100vh;
+        transition: 0.6s;
+        background: rgba(255, 255, 255, 0.19);
+        border-radius: 5px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(13.4px);
+        -webkit-backdrop-filter: blur(13.4px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        .dropdown {
+          border: none;
+          a {
+            font-size: 20px;
+          }
+          .dropdown_menu{
+            display: none;
+          }
+        }
+        .close {
+          display: block;
+          position: absolute;
+          top: 15px;
+          right: 15px;
+          font-size: 22px;
+          cursor: pointer;
+        }
+      }
+    }
+    .nav_right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      .switch {
+        display: block;
+        --width-of-switch: 3.5em;
+        --height-of-switch: 2em;
+        /* size of sliding icon -- sun and moon */
+        --size-of-icon: 1.4em;
+        /* it is like a inline-padding of switch */
+        --slider-offset: 0.3em;
+        position: relative;
+        width: var(--width-of-switch);
+        height: var(--height-of-switch);
+
+        /* Hide default HTML checkbox */
+        #switch {
+          opacity: 0;
+          width: 0;
+          height: 0;
+          visibility: hidden;
+        }
+
+        /* The slider */
+        .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #f4f4f5;
+          transition: 0.4s;
+          border-radius: 30px;
+        }
+
+        .slider:before {
+          position: absolute;
+          content: "";
+          height: var(--size-of-icon, 1.4em);
+          width: var(--size-of-icon, 1.4em);
+          border-radius: 20px;
+          left: var(--slider-offset, 0.3em);
+          top: 50%;
+          transform: translateY(-50%);
+          background: linear-gradient(40deg, #ff0080, #ff8c00 70%);
+          transition: 0.4s;
+        }
+
+        input:checked + .slider {
+          background-color: #303136;
+        }
+
+        input:checked + .slider:before {
+          left: calc(
+            100% - (var(--size-of-icon, 1.4em) + var(--slider-offset, 0.3em))
+          );
+          background: #303136;
+          /* change the value of second inset in box-shadow to change the angle and direction of the moon  */
+          box-shadow: inset -3px -2px 5px -2px #8983f7,
+            inset -10px -4px 0 0 #a3dafb;
+        }
+      }
+      #hamburger {
+        display: none;
+        cursor: pointer;
+        width: 40px;
+        @include media(900px){
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+// dropdown style
+.dropdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-size: 18px;
+  perspective: 1000px;
+  z-index: 100;
+  &:hover {
+    cursor: pointer;
+
+    .dropdown_menu li {
+      display: block;
+    }
+    .dropdown_menu--animated {
+      display: block;
+    }
+  }
+  .dropdown_menu {
+    position: absolute;
+    top: 100%;
+    // top: 35px;
+    left: -45px;
+    max-width: 250px;
+    perspective: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: -5;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    li {
+      display: none;
+      text-align: start;
+      color: rgb(0, 0, 0);
+      padding: 20px 20px;
+      font-size: 16px;
+      margin-left: 25px;
+      opacity: 0;
+      width: 100%;
+      border: none !important;
+      &:hover {
+        color: orange;
+      }
+    }
+  }
+  .dropdown_menu--animated {
+    display: none;
+    li {
+      display: block;
+      opacity: 1;
+    }
+  }
+  .dropdown_menu-4 {
+    @for $num from 1 through 5 {
+      .dropdown_item-#{$num} {
+        transform-origin: top center;
+        animation: scaleZ 300ms (#{$num * 60ms}) ease-in-out forwards;
+      }
+    }
+    li {
+      a {
+        color: #363535;
+      }
+    }
+  }
+  @keyframes scaleZ {
+    0% {
+      opacity: 0;
+      transform: scale(0);
+    }
+
+    80% {
+      transform: scale(1.07);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+.header.scrolled {
+  background-color: #f5f5f5;
+  padding: 10px 0;
+  transition: 0.3s ease-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.open-bar #root header .container .nav_list {
+  left: 0 !important;
+}
