@@ -15,6 +15,7 @@ export default class SimpleSlider extends Component {
       slidesToShow: 1,
       slidesToScroll: 1,
     };
+    
     return (
       <div className="home">
         <Slider {...settings}>

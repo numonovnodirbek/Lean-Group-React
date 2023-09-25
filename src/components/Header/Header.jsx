@@ -1,12 +1,12 @@
-import React from 'react'
-import SimpleSlider from './Carousel'
+import React from "react";
+import SimpleSlider from "./Carousel";
 
 const Header = () => {
   return (
-        <header>
-            <SimpleSlider/>
-        </header>
-  )
-}
+    <header>
+      <SimpleSlider />
+    </header>
+  );
+};
 
-export default Header
+export default Header;

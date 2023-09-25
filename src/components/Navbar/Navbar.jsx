@@ -4,7 +4,13 @@ import hamburger from "../../assets/image/hamburger.svg";
 import "./Navbar.scss";
 import Navlist from "./Navlist";
 
+
+
 const Navbar = () => {
+  const changeMode = () => {
+    document.body.classList.toggle("darl-light");
+  };
+
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -19,13 +25,9 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
   const openBar = () => {
     document.body.classList.toggle("open-bar");
   };
-  // const changeMode = () => {
-  //   document.body.c.toggle("dark-light");
-  // };
   return (
     <header className={isScrolled ? "header scrolled" : "header"}>
       <div className="container">
@@ -33,16 +35,14 @@ const Navbar = () => {
           <img src={logo} alt="logo" />
           <ul className="nav_list">
             <Navlist />
-            {/* <label className="close" onClick={openBar}>
+            <label className="close" onClick={openBar}>
               <i class="fa-solid fa-x"></i>
-            </label> */}
+            </label>
           </ul>
           <div className="nav_right">
-            <label class="switch" 
-            // onClick={changeMode}
-            >
+            <label className="switch" onClick={changeMode}>
               <input id="switch" type="checkbox" />
-              <span class="slider"></span>
+              <span className="slider"></span>
             </label>
             <img
               id="hamburger"

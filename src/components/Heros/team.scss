@@ -24,13 +24,11 @@
     place-items: center;
     align-items: center;
     justify-content: space-between;
-    @include media(1268px) {
-      grid-template-columns: repeat(5, 1fr);
-    }
-    @include media(552px) {
-      
-      justify-content: center;
-      gap: 25px;
+    @include media(1080px) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      row-gap: 20px;
     }
   }
   .card {
